@@ -24,16 +24,14 @@ public class GetBooksUsedByUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = null;
-        try{
-            writer = resp.getWriter();
-            String str;
-            int id = Integer.parseInt(req.getParameter("id"));
-            ArrayList <String> list = userService.getBooksUsedByUser(id);
-            String books = String.join(", ",list);
-            writer.print("This user used " + books);
-        }finally{
-            if(writer != null) writer.close();
-        }
+
+        String str;
+        int id = Integer.parseInt(req.getParameter("id"));
+        ArrayList <String> list = userService.getBooksUsedByUser(id);
+        String books = String.join(", ",list);
+        String res = "This user used " + books;
+        req.setAttribute("books_used",res);
+        req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
+
     }
 }

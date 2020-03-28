@@ -24,14 +24,11 @@ public class GetTodayDebtors extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = null;
-        try{
-            writer = resp.getWriter();
-            long t = Long.parseLong(req.getParameter("t"));
-            ArrayList<String> list = userService.getTodayDebtors(t);
-            writer.println("Today's debtors are: " + String.join(", ",list));
-        }finally{
-            if(writer != null) writer.close();
-        }
+
+        long t = Long.parseLong(req.getParameter("t2"));
+        ArrayList<String> list = userService.getTodayDebtors(t);
+        String s = "Today's debtors are: " + String.join(", ",list);
+        req.setAttribute("todays_debtors", s);
+        req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
     }
 }

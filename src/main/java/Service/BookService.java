@@ -18,15 +18,12 @@ public class BookService {
     }
 
     public boolean update(Book book) {
-        if (bookDAO.get(book.getBook_ID()).isPresent()) {
             bookDAO.update(book);
             return true;
-        } else return false;
-
     }
 
     public Book get(long id) {
-        return bookDAO.get(id).get();
+        return bookDAO.get(id);
     }
 
     public Collection<Book> getAll() {

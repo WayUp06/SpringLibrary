@@ -19,15 +19,12 @@ public class UserService {
     }
 
     public boolean update(User user) {
-        if (userDAO.get(user.getUser_ID()).isPresent()) {
             userDAO.update(user);
             return true;
-        } else return false;
-
     }
 
     public User get(long id) {
-        return userDAO.get(id).get();
+        return userDAO.get(id);
     }
 
     public Collection<User> getAll() {

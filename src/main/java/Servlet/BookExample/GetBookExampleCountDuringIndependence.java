@@ -22,13 +22,12 @@ public class GetBookExampleCountDuringIndependence extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = null;
-        try{
-            Long l = bookExampleService.getBookExamplesCountDuringIndependence();
-            writer = resp.getWriter();
-            writer.println("We have " + l + " book examples published during independence.");
-        }finally{
-            if(writer != null) writer.close();
-        }
+
+        Long l = bookExampleService.getBookExamplesCountDuringIndependence();
+
+        String s = "We have " + l + " book examples published during independence.";
+        req.setAttribute("independence",s);
+        req.getRequestDispatcher("/Pages/BookExample.jsp").include(req, resp);
+
     }
 }

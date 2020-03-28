@@ -23,15 +23,12 @@ public class GetCountOfUsagesOfPeriod extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = null;
-        try{
-            String start = req.getParameter("start");
-            String end = req.getParameter("end");
-            int i = usageService.getCountOfUsagesOfPeriod(start,end);
-            writer = resp.getWriter();
-            writer.println("There were " + i + " usages.");
-        }finally{
-            if(writer != null) writer.close();
-        }
+
+        String start = req.getParameter("start");
+        String end = req.getParameter("end");
+        int i = usageService.getCountOfUsagesOfPeriod(start,end);
+        String s = "There were " + i + " usages.";
+        req.setAttribute("period",s);
+        req.getRequestDispatcher("/Pages/Usage.jsp").include(req, resp);
     }
 }

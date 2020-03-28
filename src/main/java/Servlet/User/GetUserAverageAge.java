@@ -21,29 +21,14 @@ public class GetUserAverageAge extends HttpServlet {
         userService = new UserService();
     }
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService u = new UserService();
-        double d = u.getUserAverageAge();
-        PrintWriter writer = null;
-        writer = resp.getWriter();
-        //double d = userService.getUserAverageAge();
-        writer.println("<html> <body>");
-        writer.println("Average age is " +d);
-        writer.println("</body> </html> ");
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = null;
-        try{
-            writer = resp.getWriter();
-            double d = userService.getUserAverageAge();
-            writer.println("<html> <body>");
-            writer.println("Average age is " + d);
-            writer.println("</body> </html> ");
-        }finally{
-            if(writer != null) writer.close();
-        }
+
+        double d = userService.getUserAverageAge();
+        String s = "User average age is " + d;
+        req.setAttribute("av_age_all",s);
+        req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
     }
 }

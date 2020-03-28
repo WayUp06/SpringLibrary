@@ -24,15 +24,12 @@ public class GetPeriodOfLibraryUsing extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = null;
-        try{
-            writer = resp.getWriter();
-            int id = Integer.parseInt(req.getParameter("id"));
-            Period p = userService.getPeriodOfLibraryUsing(id);
-            writer.println("This user is using library for " + p.getYears() + " years " +
-                    p.getMonths() + " months " + p.getDays() + " days");
-        }finally{
-            if(writer != null) writer.close();
-        }
+
+        int id = Integer.parseInt(req.getParameter("id3"));
+        Period p = userService.getPeriodOfLibraryUsing(id);
+        String s = "This user is using library for " + p.getYears() + " years " +
+                    p.getMonths() + " months " + p.getDays() + " days";
+        req.setAttribute("using_period",s);
+        req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
     }
 }

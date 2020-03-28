@@ -90,7 +90,6 @@ public class BookDAO extends ElementDAOImp<Book> {
             System.out.println("3");
             for(int i:list) {
                 System.out.println("4");
-                Usage x = new Usage();
                 Usage usage = usageDAO.get(i);//.get();
                 System.out.println("5");
                 LocalDate take = usage.getTakeDate();

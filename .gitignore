@@ -1,3 +1,6 @@
 # Project exclude paths
 /out/
 /target/
+/web/Answer/output.jsp
+/src/main/resources/hibernate.cfg.xml
+/Lib.iml

@@ -213,8 +213,9 @@ public class UserDAO extends ElementDAOImp<User> {
             for(Object[] obj: usagesusers){
                 int id = (int)obj[0];
                 LocalDate take = (LocalDate) obj[1];
-                Optional<LocalDate> ret = (Optional<LocalDate>) obj[2];
-                long days = ChronoUnit.DAYS.between(take , ret.orElse(LocalDate.now()));
+                Optional<Object> ret = Optional.ofNullable(obj[2]);
+                LocalDate r = (LocalDate) ret.orElse(LocalDate.now());
+                long days = ChronoUnit.DAYS.between(take , r);
                 if((days > t) && (!userID.contains(id)) ) userID.add(id);
             }
             for(int id:userID){

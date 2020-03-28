@@ -21,7 +21,6 @@
     <li><a href = "http://localhost:8080/Lib_war_exploded/Pages/BookExample.jsp">Book Example</a></li>
     <li><a href = "http://localhost:8080/Lib_war_exploded/Pages/User.jsp">User</a></li>
     <li><a href = "http://localhost:8080/Lib_war_exploded/Pages/Usage.jsp">Usage</a></li>
-    <li><a href = "/Gett">get</a></li>
   </ul>
   </body>
 </html>

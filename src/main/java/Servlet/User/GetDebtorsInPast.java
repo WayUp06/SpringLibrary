@@ -24,14 +24,12 @@ public class GetDebtorsInPast extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = null;
-        try{
-            writer = resp.getWriter();
-            long t = Long.parseLong(req.getParameter("t"));
-            ArrayList<String> list = userService.getDebtorsInPast(t);
-            writer.print("Debtors in past are: " + String.join(", ", list));
-        }finally{
-            if(writer != null) writer.close();
-        }
+
+        long t = Long.parseLong(req.getParameter("t1"));
+        ArrayList<String> list = userService.getDebtorsInPast(t);
+        String s = "Debtors in past are: " + String.join(", ", list);
+        req.setAttribute("past_debtors",s);
+        req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
+
     }
 }

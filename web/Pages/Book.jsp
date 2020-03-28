@@ -27,7 +27,7 @@
 
 <p><c:out value="${book_availability}" default="" /></p>
 
-<br>
+<!--<br>
 <form action="/Lib_war_exploded/getAverageBookReadingPeriod" method="get">
     <fieldset>
         <legend>Get average book reading period:</legend>
@@ -38,7 +38,57 @@
     </fieldset>
 </form>
 
-<p><c:out value="${reading_period}" default="" /></p>
+<p><c:out value="${reading_period}" default="" /></p> -->
+
+
+
+<br>
+<form action="/Lib_war_exploded/getCountOfBookUsage" method="get">
+    <fieldset>
+        <legend>Get count of book usage:</legend>
+        <label for="usage_name">Book title:</label><br>
+        <input type="text" id="usage_name" name="usage_name"><br>
+
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<p><c:out value="${usage_count}" default="" /></p>
+
+
+
+
+<br>
+<form action="/Lib_war_exploded/getCountOfBookUsageByExample" method="get">
+    <fieldset>
+        <legend>Get count of book usage:</legend>
+        <label for="count_by_ex">Book title:</label><br>
+        <input type="text" id="count_by_ex" name="usage_count_by_ex"><br>
+
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<p><c:out value="${usage_count_by_ex}" default="" /></p>
+
+
+
+
+
+<br>
+<form action="/Lib_war_exploded/getMostAndLessPopularBooks" method="get">
+    <fieldset>
+        <legend>Get most popular and unpopular books by period:</legend>
+        <label for="start">Start of the period (YYYY-MM-DD):</label><br>
+        <input type="text" id="start" name="start"><br>
+
+        <label for="end">End of the period (YYYY-MM-DD):</label><br>
+        <input type="text" id="end" name="end"><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<p><c:out value="${popularity}" default="" /></p>
 
 </body>
 </html>

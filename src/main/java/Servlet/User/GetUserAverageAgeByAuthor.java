@@ -23,15 +23,13 @@ public class GetUserAverageAgeByAuthor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer= null;
-        try{
-            writer =  resp.getWriter();
-            String name = req.getParameter("name");
-            String surname = req.getParameter("surname");
-            double d = userService.getUserAverageAgeByAuthor(name,surname);
-            writer.println("Average age by this author is " + d);
-        }finally{
-            if(writer != null) writer.close();
-        }
+
+        String name = req.getParameter("aan");
+        String surname = req.getParameter("aas");
+        double d = userService.getUserAverageAgeByAuthor(name,surname);
+        String s = "Average age by this author is " + d;
+        req.setAttribute("avg_age_author",s);
+        req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
+
     }
 }
