@@ -28,7 +28,7 @@ public class GetTodayDebtors extends HttpServlet {
         long t = Long.parseLong(req.getParameter("t2"));
         ArrayList<String> list = userService.getTodayDebtors(t);
         String s = "Today's debtors are: " + String.join(", ",list);
-        req.setAttribute("todays_debtors", s);
+        req.setAttribute("todaysDebtors", s);
         req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
     }
 }

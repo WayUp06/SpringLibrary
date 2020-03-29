@@ -30,7 +30,7 @@ public class GetBooksUsedByUser extends HttpServlet {
         ArrayList <String> list = userService.getBooksUsedByUser(id);
         String books = String.join(", ",list);
         String res = "This user used " + books;
-        req.setAttribute("books_used",res);
+        req.setAttribute("booksUsed",res);
         req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
 
     }

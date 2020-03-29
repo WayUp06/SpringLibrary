@@ -28,7 +28,7 @@ public class GetUserAverageAgeByAuthor extends HttpServlet {
         String surname = req.getParameter("aas");
         double d = userService.getUserAverageAgeByAuthor(name,surname);
         String s = "Average age by this author is " + d;
-        req.setAttribute("avg_age_author",s);
+        req.setAttribute("avgAgeByAuthor",s);
         req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
 
     }

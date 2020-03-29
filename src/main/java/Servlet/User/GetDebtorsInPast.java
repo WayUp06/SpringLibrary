@@ -28,7 +28,7 @@ public class GetDebtorsInPast extends HttpServlet {
         long t = Long.parseLong(req.getParameter("t1"));
         ArrayList<String> list = userService.getDebtorsInPast(t);
         String s = "Debtors in past are: " + String.join(", ", list);
-        req.setAttribute("past_debtors",s);
+        req.setAttribute("pastDebtors",s);
         req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
 
     }

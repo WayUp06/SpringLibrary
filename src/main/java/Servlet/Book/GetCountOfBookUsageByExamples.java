@@ -24,9 +24,9 @@ public class GetCountOfBookUsageByExamples extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-            String name = req.getParameter("usage_count_by_ex");
+            String name = req.getParameter("usageCountByEx");
             ArrayList<String> list = bookService.getCountOfBookUsageByExamples(name);
-            req.setAttribute("usage_count_by_ex",String.join(", ",list));
+            req.setAttribute("usageCountByExample",String.join(", ",list));
             req.getRequestDispatcher("/Pages/Book.jsp").include(req, resp);
     }
 }

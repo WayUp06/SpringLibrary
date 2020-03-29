@@ -29,7 +29,7 @@ public class GetPeriodOfLibraryUsing extends HttpServlet {
         Period p = userService.getPeriodOfLibraryUsing(id);
         String s = "This user is using library for " + p.getYears() + " years " +
                     p.getMonths() + " months " + p.getDays() + " days";
-        req.setAttribute("using_period",s);
+        req.setAttribute("usingPeriod",s);
         req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
     }
 }

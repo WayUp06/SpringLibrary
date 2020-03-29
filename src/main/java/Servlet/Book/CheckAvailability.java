@@ -27,7 +27,7 @@ public class CheckAvailability extends HttpServlet {
         String book_availability;
         if (b) book_availability = "This book is available.";
         else book_availability = "This book isn't available.";
-        req.setAttribute("book_availability", book_availability);
+        req.setAttribute("bookAvailability", book_availability);
         req.getRequestDispatcher("/Pages/Book.jsp").include(req, resp);
     }
 }

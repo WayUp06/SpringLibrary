@@ -29,7 +29,7 @@ public class GetBooksUsingByUser extends HttpServlet {
         String s;
         if(list.size() != 0) s = "This user is currently using " + String.join(", ", list);
         else  s = "This user is currently using no books.";
-        req.setAttribute("books_using",s);
+        req.setAttribute("booksUsing",s);
         req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
 
     }

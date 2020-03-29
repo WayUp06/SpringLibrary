@@ -28,7 +28,7 @@ public class GetUserAverageAge extends HttpServlet {
 
         double d = userService.getUserAverageAge();
         String s = "User average age is " + d;
-        req.setAttribute("av_age_all",s);
+        req.setAttribute("avAgeAll",s);
         req.getRequestDispatcher("/Pages/User.jsp").include(req, resp);
     }
 }

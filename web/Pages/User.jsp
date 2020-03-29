@@ -27,7 +27,7 @@
     </fieldset>
 </form>
 
-<p><c:out value="${books_used}" default="" /></p>
+<p><c:out value="${booksUsed}" default="" /></p>
 
 
 <br>
@@ -41,7 +41,7 @@
     </fieldset>
 </form>
 
-<p><c:out value="${books_using}" default="" /></p>
+<p><c:out value="${booksUsing}" default="" /></p>
 
 
 <br>
@@ -55,7 +55,7 @@
     </fieldset>
 </form>
 
-<p><c:out value="${past_debtors}" default="" /></p>
+<p><c:out value="${pastDebtors}" default="" /></p>
 
 
 
@@ -71,7 +71,7 @@
     </fieldset>
 </form>
 
-<p><c:out value="${using_period}" default="" /></p>
+<p><c:out value="${usingPeriod}" default="" /></p>
 
 
 
@@ -87,7 +87,7 @@
     </fieldset>
 </form>
 
-<p><c:out value="${todays_debtors}" default="" /></p>
+<p><c:out value="${todaysDebtors}" default="" /></p>
 
 
 
@@ -99,7 +99,7 @@
     </fieldset>
 </form>
 
-<p><c:out value="${av_age_all}" default="" /></p>
+<p><c:out value="${avAgeAll}" default="" /></p>
 
 
 
@@ -116,7 +116,7 @@
     </fieldset>
 </form>
 
-<p><c:out value="${avg_age_author}" default="" /></p>
+<p><c:out value="${avgAgeByAuthor}" default="" /></p>
 
 
 
@@ -131,7 +131,7 @@
     </fieldset>
 </form>
 
-<p><c:out value="${avg_age_book}" default="" /></p>
+<p><c:out value="${avgAgeByBook}" default="" /></p>
 
 </body>
 </html>

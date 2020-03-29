@@ -17,32 +17,32 @@
 <form action="/Lib_war_exploded/GetBooksOfAuthor" method="get">
     <fieldset>
         <legend>Get books of author:</legend>
-        <label for="author_name">First name:</label><br>
-        <input type="text" id="author_name" name="author_name"><br>
+        <label for="authorName">First name:</label><br>
+        <input type="text" id="authorName" name="authorName"><br>
 
-        <label for="author_surname">Last name:</label><br>
-        <input type="text" id="author_surname" name="author_surname"><br><br>
+        <label for="authorSurname">Last name:</label><br>
+        <input type="text" id="authorSurname" name="authorSurname"><br><br>
 
         <input type="submit" value="Submit">
     </fieldset>
 </form>
 
-<p><c:out value="${books_of_author}" default="" /></p>
+<p><c:out value="${booksOfAuthor}" default="" /></p>
 
 
 <form action = "/Lib_war_exploded/GetBooksOfCoauthor" method = "get">
     <fieldset>
         <legend>Get books of this author as coauthor</legend>
-        <label for="coauthor_name">First name</label><br>
-        <input type="text" id="coauthor_name" name="coauthor_name"><br>
+        <label for="coauthorName">First name</label><br>
+        <input type="text" id="coauthorName" name="coauthorName"><br>
 
-        <label for="coauthor_surname">Last name</label><br>
-        <input type="text" id="coauthor_surname" name="coauthor_surname"><br>
+        <label for="coauthorSurname">Last name</label><br>
+        <input type="text" id="coauthorSurname" name="coauthorSurname"><br>
         <input type="submit" value="Submit">
     </fieldset>
 </form>
 
-<p><c:out value="${books_of_coauthor}" default="" /></p>
+<p><c:out value="${booksOfCoauthor}" default="" /></p>
 
 
 
