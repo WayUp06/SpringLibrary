@@ -27,18 +27,18 @@
 
 <p><c:out value="${bookAvailability}" default="" /></p>
 
-<!--<br>
+<br>
 <form action="/Lib_war_exploded/getAverageBookReadingPeriod" method="get">
     <fieldset>
         <legend>Get average book reading period:</legend>
-        <label for="read_name">Book title:</label><br>
-        <input type="text" id="read_name" name="read_name"><br>
+        <label for="readName">Book title:</label><br>
+        <input type="text" id="readName" name="readName"><br>
 
         <input type="submit" value="Submit">
     </fieldset>
 </form>
 
-<p><c:out value="${reading_period}" default="" /></p> -->
+<p><c:out value="${readingPeriod}" default="" /></p>
 
 
 

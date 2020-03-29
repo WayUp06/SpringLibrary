@@ -78,37 +78,27 @@ public class BookDAO extends ElementDAOImp<Book> {
         try{
             session = HibernateUtil.getSession();
             session.beginTransaction();
-            System.out.println("1");
             Query query = session.createQuery("Select u.usage_ID from " +
                     " Book b inner join BookExample be on b.book_ID = be.book_ID " +
                     "inner join Usage u on u.bookExample_ID=be.bookExample_ID " +
                     "where b.name=:name");
             query.setParameter("name",name);
-            System.out.println("2");
             List<Integer> list = (List<Integer>) query.list();
             UsageDAO usageDAO = new UsageDAO(Usage.class);
-            System.out.println("3");
             for(int i:list) {
-                System.out.println("4");
-                Usage usage = usageDAO.get(i);//.get();
-                System.out.println("5");
+                Usage usage = session.get(Usage.class, i);//.get();
                 LocalDate take = usage.getTakeDate();
-                System.out.println("6");
                 Optional<LocalDate> ret = usage.getReturnDate();
-                System.out.println("7");
                 if(ret.isPresent()){
                     count++;
-                    System.out.println("8");
                     sum += ChronoUnit.DAYS.between(take,ret.orElse(take));
-                    System.out.println("9");
                 }
             }
         }finally{
             if((session!=null) && session.isOpen()) session.close();
         }
         int result = sum/count;
-        if(result <= 1) return 1;
-        return result;
+        return Math.max(result, 1);
     }
 
     /**
@@ -154,7 +144,7 @@ public class BookDAO extends ElementDAOImp<Book> {
      */
     public ArrayList<String> getCountOfBookUsageByExamples(String name){
         Session session = null;
-        ArrayList<String> list = null;
+        ArrayList<String> list;
         try{
             session = HibernateUtil.getSession();
             session.beginTransaction();

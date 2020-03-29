@@ -25,7 +25,7 @@ public class AuthorService {
             return true;
     }
 
-    public Author get(long id) {
+    public Author get(int id) {
         return authorDAO.get(id);
     }
 

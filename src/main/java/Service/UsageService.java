@@ -24,7 +24,7 @@ public class UsageService {
 
     }
 
-    public Usage get(long id) {
+    public Usage get(int id) {
         return usageDAO.get(id);
     }
 

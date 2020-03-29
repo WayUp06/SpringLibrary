@@ -22,10 +22,10 @@ public class GetAverageBookReadingPeriod extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("read_name");
+        String name = req.getParameter("readName");
         int i = bookService.getAverageBookReadingPeriod(name);
         String r = "It takes " + i + " days to read this book";
-        req.setAttribute("reading_period",r);
+        req.setAttribute("readingPeriod",r);
         req.getRequestDispatcher("/Pages/Book.jsp").include(req, resp);
     }
 }

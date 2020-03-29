@@ -15,8 +15,6 @@ public class UsageDAO extends ElementDAOImp<Usage> {
 
 
 
-
-
     /**
      * @return count of all library usages during some period
      */

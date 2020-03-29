@@ -22,7 +22,7 @@ public class BookExampleService {
             return true;
       }
 
-    public BookExample get(long id) {
+    public BookExample get(int id) {
         return bookExampleDAO.get(id);
     }
 

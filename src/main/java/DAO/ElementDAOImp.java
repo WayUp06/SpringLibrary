@@ -47,7 +47,7 @@ public class ElementDAOImp <E> implements ElementDAO <E> {
     }
 
     @Override
-    public E get(long eID) {
+    public E get(int eID) {
         Session session = null;
         E e = null;
         try{
@@ -59,18 +59,6 @@ public class ElementDAOImp <E> implements ElementDAO <E> {
         return  e;
     }
 
-    /*@Override
-    public E get(long eID) {
-        Session session = null;
-        E e = null;
-        try{
-            session = HibernateUtil.getSession();
-            e = session.get(elementClass,eID);
-        }finally{
-            if((session != null) && (session.isOpen())) session.close();
-        }
-        return e;
-    }*/
 
     @Override
     public Collection<E> getAll() {

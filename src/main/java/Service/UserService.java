@@ -19,11 +19,11 @@ public class UserService {
     }
 
     public boolean update(User user) {
-            userDAO.update(user);
-            return true;
+        userDAO.update(user);
+        return true;
     }
 
-    public User get(long id) {
+    public User get(int id) {
         return userDAO.get(id);
     }
 
