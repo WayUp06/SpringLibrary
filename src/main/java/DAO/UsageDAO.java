@@ -18,9 +18,9 @@ public class UsageDAO extends ElementDAOImp<Usage> {
     /**
      * @return count of all library usages during some period
      */
-    public int getCountOfUsagesOfPeriod(String start, String end){
+    public long getCountOfUsagesOfPeriod(String start, String end){
         Session session = null;
-        int result;
+        long result;
         try{
             session = HibernateUtil.getSession();
             session.beginTransaction();
@@ -30,7 +30,7 @@ public class UsageDAO extends ElementDAOImp<Usage> {
             LocalDate e = LocalDate.parse(end);
             query.setParameter("start", s);
             query.setParameter("end", e);
-            result = (int) query.uniqueResult();
+            result = (long) query.uniqueResult();
         }finally{
             if((session != null) && session.isOpen()) session.close();
         }

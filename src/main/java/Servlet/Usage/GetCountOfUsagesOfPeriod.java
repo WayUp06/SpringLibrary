@@ -26,7 +26,7 @@ public class GetCountOfUsagesOfPeriod extends HttpServlet {
 
         String start = req.getParameter("start");
         String end = req.getParameter("end");
-        int i = usageService.getCountOfUsagesOfPeriod(start,end);
+        long i = usageService.getCountOfUsagesOfPeriod(start,end);
         String s = "There were " + i + " usages.";
         req.setAttribute("period",s);
         req.getRequestDispatcher("/Pages/Usage.jsp").include(req, resp);

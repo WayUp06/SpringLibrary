@@ -36,7 +36,7 @@ public class UsageService {
         usageDAO.delete(usage);
     }
 
-    public int getCountOfUsagesOfPeriod(String start, String end) {
+    public long getCountOfUsagesOfPeriod(String start, String end) {
         return usageDAO.getCountOfUsagesOfPeriod(start, end);
     }
 }
