@@ -35,7 +35,7 @@ public class User {
     @Column(name = "registeredDate")
     private LocalDate registeredDate;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     private Set<Usage> usageSet;
 
     public User(String name, int age, LocalDate registeredDate, LocalDate deregisteredDate) {

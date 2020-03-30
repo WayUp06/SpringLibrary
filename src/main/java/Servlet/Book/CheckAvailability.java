@@ -23,10 +23,12 @@ public class CheckAvailability extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        Boolean b = bookService.checkBookAvailability(name);
         String book_availability;
-        if (b) book_availability = "This book is available.";
-        else book_availability = "This book isn't available.";
+        if (bookService.checkBookAvailability(name)) {
+            book_availability = "This book is available.";
+        } else {
+            book_availability = "This book isn't available.";
+        }
         req.setAttribute("bookAvailability", book_availability);
         req.getRequestDispatcher("/Pages/Book.jsp").include(req, resp);
     }

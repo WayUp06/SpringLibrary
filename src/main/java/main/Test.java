@@ -3,6 +3,7 @@ package main;
 import DAO.BookDAO;
 import DAO.UsageDAO;
 import DAO.UserDAO;
+import Entity.BookExample;
 import Entity.Usage;
 import Service.UserService;
 import org.hibernate.Session;
@@ -15,7 +16,6 @@ public class Test {
 
         try (Session session = HibernateUtil.getSession()) {
             session.beginTransaction();
-
             session.getTransaction().commit();
             session.close();
         } catch (Throwable e) {

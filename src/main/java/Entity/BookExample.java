@@ -41,7 +41,7 @@ public class BookExample {
     private Book book;
 
 
-    @OneToMany(mappedBy = "bookExamples")
+    @OneToMany(mappedBy = "bookExample")
     private Set<Usage> usageSet;
 
 

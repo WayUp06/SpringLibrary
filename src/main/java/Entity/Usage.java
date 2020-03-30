@@ -51,12 +51,12 @@ public class Usage {
 
     @ManyToOne()
     @JoinColumn(name = "bookExample_ID", insertable = false, updatable = false)
-    private BookExample bookExamples;
+    private BookExample bookExample;
 
 
     @ManyToOne()
     @JoinColumn(name = "user_ID", insertable = false, updatable = false)
-    private User users;
+    private User user;
 
     public Optional<LocalDate> getReturnDate() {
         return Optional.ofNullable(returnDate);
