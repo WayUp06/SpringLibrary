@@ -13,6 +13,7 @@
 </head>
 <body>
 <h2>This is page about authors</h2>
+
 <br>
 <form action="/Lib_war_exploded/GetBooksOfAuthor" method="get">
     <fieldset>
@@ -26,7 +27,6 @@
         <input type="submit" value="Submit">
     </fieldset>
 </form>
-
 <p><c:out value="${booksOfAuthor}" default="" /></p>
 
 
@@ -41,7 +41,6 @@
         <input type="submit" value="Submit">
     </fieldset>
 </form>
-
 <p><c:out value="${booksOfCoauthor}" default="" /></p>
 
 

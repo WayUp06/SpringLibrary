@@ -28,11 +28,12 @@ public class Book {
         this.author_ID = author_ID;
     }
 
-    public Book() { }
+    public Book() {
+    }
 
 
     @ManyToOne
-    @JoinColumn(name = "author_ID", insertable=false, updatable=false)
+    @JoinColumn(name = "author_ID", insertable = false, updatable = false)
     private Author author;
 
 

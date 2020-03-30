@@ -27,42 +27,41 @@ public class BookDAO extends ElementDAOImp<Book> {
     /**
      * @return true if there is at least one available book example in library, otherwise return false
      */
-    public boolean checkAvailability(String name){
+    public boolean checkAvailability(String name) {
         Session session = null;
-        ArrayList <String> list = null;
-        try{
+        ArrayList<String> list = null;
+        try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
             Query query = session.createQuery("Select be.existence from Book b " +
                     " inner join BookExample be on be.book_ID = b.book_ID " +
                     "where be.existence = 'Yes' and b.name = :name");
-            query.setParameter("name",name);
+            query.setParameter("name", name);
             list = (ArrayList<String>) query.list();
-        } finally{
-            if((session != null) && (session.isOpen())) session.close();
+        } finally {
+            if ((session != null) && (session.isOpen())) session.close();
         }
         return !list.isEmpty();
-
     }
 
     /**
      * @return Count of usages of this book
      */
-    public Long getCountOfBookUsage(String name){
+    public Long getCountOfBookUsage(String name) {
         Session session = null;
         Long count;
-        try{
+        try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
             Query query = session.createQuery("Select count(u.usage_ID) from " +
                     " Book  b inner join BookExample be on b.book_ID = be.book_ID " +
                     "inner join Usage u on be.bookExample_ID = u.bookExample_ID where b.name = :name");
             query.setParameter("name", name);
-            count = (Long)query.uniqueResult();
-        }finally{
-            if((session != null) && session.isOpen()) session.close();
+            count = (Long) query.uniqueResult();
+        } finally {
+            if ((session != null) && session.isOpen()) session.close();
         }
-        return  count;
+        return count;
     }
 
 
@@ -71,48 +70,48 @@ public class BookDAO extends ElementDAOImp<Book> {
      * @return average count of days needed to read a book
      */
 
-    public int getAverageBookReadingPeriod(String name){
+    public int getAverageBookReadingPeriod(String name) {
         Session session = null;
         int sum = 0;
         int count = 0;
-        try{
+        try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
             Query query = session.createQuery("Select u.usage_ID from " +
                     " Book b inner join BookExample be on b.book_ID = be.book_ID " +
                     "inner join Usage u on u.bookExample_ID=be.bookExample_ID " +
                     "where b.name=:name");
-            query.setParameter("name",name);
+            query.setParameter("name", name);
             List<Integer> list = (List<Integer>) query.list();
             UsageDAO usageDAO = new UsageDAO(Usage.class);
-            for(int i:list) {
+            for (int i : list) {
                 Usage usage = session.get(Usage.class, i);//.get();
                 LocalDate take = usage.getTakeDate();
                 Optional<LocalDate> ret = usage.getReturnDate();
-                if(ret.isPresent()){
+                if (ret.isPresent()) {
                     count++;
-                    sum += ChronoUnit.DAYS.between(take,ret.orElse(take));
+                    sum += ChronoUnit.DAYS.between(take, ret.orElse(take));
                 }
             }
-        }finally{
-            if((session!=null) && session.isOpen()) session.close();
+        } finally {
+            if ((session != null) && session.isOpen()) session.close();
         }
-        int result = sum/count;
+        int result = sum / count;
         return Math.max(result, 1);
     }
 
+
     /**
-     *
      * @param start - date in format YYYY-MM-DD, inclusive
-     * @param end - date in format YYYY-MM-DD, inclusive
+     * @param end   - date in format YYYY-MM-DD, inclusive
      * @return list with 2 Strings: first - the most popular book, second - the most unpopular
      */
-    public ArrayList<String> getMostPopularAndUnpopularBookByPeriod(String start,String end){
+    public ArrayList<String> getMostPopularAndUnpopularBookByPeriod(String start, String end) {
         Session session = null;
-        ArrayList<String> list ;
+        ArrayList<String> list;
         ArrayList<String> result = new ArrayList<>();
         String res;
-        try{
+        try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
             Query query = session.createQuery("Select b.name from Book b " +
@@ -123,29 +122,27 @@ public class BookDAO extends ElementDAOImp<Book> {
                     "order by count(u.usage_ID) desc");
             LocalDate s = LocalDate.parse(start);
             LocalDate e = LocalDate.parse(end);
-            query.setParameter("start",s);
+            query.setParameter("start", s);
             query.setParameter("end", e);
             list = (ArrayList<String>) query.list();
             result.add(list.get(0));
-            result.add(list.get(list.size()-1));
-        } finally{
-            if((session != null) && session.isOpen()) session.close();
+            result.add(list.get(list.size() - 1));
+        } finally {
+            if ((session != null) && session.isOpen()) session.close();
         }
         return result;
-
-
     }
 
+
     /**
-     *
      * @param name - book name
      * @return list of Strings format Example (BookExample_ID) was taken (how many times) times
      * doesn't return count of usages of books that were NOT used
      */
-    public ArrayList<String> getCountOfBookUsageByExamples(String name){
+    public ArrayList<String> getCountOfBookUsageByExamples(String name) {
         Session session = null;
         ArrayList<String> list;
-        try{
+        try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
             Query query = session.createQuery("Select concat('Example ',be.bookExample_ID," +
@@ -154,14 +151,12 @@ public class BookDAO extends ElementDAOImp<Book> {
                     " inner join Book b on b.book_ID = be.book_ID where b.name=:name " +
                     " group by be.bookExample_ID " +
                     " order by be.bookExample_ID asc");
-            query.setParameter("name",name);
+            query.setParameter("name", name);
             list = (ArrayList<String>) query.list();
-        }finally{
-            if((session != null) && session.isOpen()) session.close();
+        } finally {
+            if ((session != null) && session.isOpen()) session.close();
         }
         return list;
-
-
     }
 
 

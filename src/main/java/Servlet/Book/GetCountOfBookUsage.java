@@ -23,13 +23,10 @@ public class GetCountOfBookUsage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-            String name = req.getParameter("usageName");
-            Long l = bookService.getCountOfBookUsage(name);
-            String result = "This book was used " + l + " times.";
-            req.setAttribute("usageCount",result);
-            req.getRequestDispatcher("/Pages/Book.jsp").include(req, resp);
-
-
+        String name = req.getParameter("usageName");
+        Long l = bookService.getCountOfBookUsage(name);
+        String result = "This book was used " + l + " times.";
+        req.setAttribute("usageCount", result);
+        req.getRequestDispatcher("/Pages/Book.jsp").include(req, resp);
     }
 }

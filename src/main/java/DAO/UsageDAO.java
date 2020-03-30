@@ -14,14 +14,13 @@ public class UsageDAO extends ElementDAOImp<Usage> {
     }
 
 
-
     /**
      * @return count of all library usages during some period
      */
-    public long getCountOfUsagesOfPeriod(String start, String end){
+    public long getCountOfUsagesOfPeriod(String start, String end) {
         Session session = null;
         long result;
-        try{
+        try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
             Query query = session.createQuery("select count(u.id) from Usage u" +
@@ -31,8 +30,8 @@ public class UsageDAO extends ElementDAOImp<Usage> {
             query.setParameter("start", s);
             query.setParameter("end", e);
             result = (long) query.uniqueResult();
-        }finally{
-            if((session != null) && session.isOpen()) session.close();
+        } finally {
+            if ((session != null) && session.isOpen()) session.close();
         }
         return result;
     }

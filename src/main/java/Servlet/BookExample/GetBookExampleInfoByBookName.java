@@ -24,13 +24,12 @@ public class GetBookExampleInfoByBookName extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-            String name = req.getParameter("name");
-            ArrayList<Long> list = (ArrayList<Long>) bookExampleService.getBookExampleInfoByBookName(name);
-            String s = "We have " + list.get(0) + " examples of this book. " + list.get(1) + " are available now " +
-                    "and " + list.get(2) + " are in use.";
-            req.setAttribute("info",s);
-            req.getRequestDispatcher("/Pages/BookExample.jsp").include(req, resp);
+        String name = req.getParameter("name");
+        ArrayList<Long> list = (ArrayList<Long>) bookExampleService.getBookExampleInfoByBookName(name);
+        String s = "We have " + list.get(0) + " examples of this book. " + list.get(1) + " are available now " +
+                "and " + list.get(2) + " are in use.";
+        req.setAttribute("info", s);
+        req.getRequestDispatcher("/Pages/BookExample.jsp").include(req, resp);
 
     }
 }

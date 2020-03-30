@@ -9,40 +9,39 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public class ElementDAOImp <E> implements ElementDAO <E> {
+public class ElementDAOImp<E> implements ElementDAO<E> {
 
     private Class<E> elementClass;
 
-    public ElementDAOImp() {
-    }
+    public ElementDAOImp() { }
 
-    public ElementDAOImp(Class<E> elementClass){
+    public ElementDAOImp(Class<E> elementClass) {
         this.elementClass = elementClass;
     }
 
     @Override
     public void add(E e) {
         Session session = null;
-        try{
+        try {
             session = HibernateUtil.getSession();
             Transaction transaction = session.beginTransaction();
             session.save(e);
             transaction.commit();
-        }finally{
-            if((session != null) && (session.isOpen())) session.close();
+        } finally {
+            if ((session != null) && (session.isOpen())) session.close();
         }
     }
 
     @Override
     public void update(E e) {
         Session session = null;
-        try{
+        try {
             session = HibernateUtil.getSession();
             Transaction transaction = session.beginTransaction();
             session.update(e);
             transaction.commit();
-        }finally{
-            if((session != null) && (session.isOpen())) session.close();
+        } finally {
+            if ((session != null) && (session.isOpen())) session.close();
         }
     }
 
@@ -50,13 +49,13 @@ public class ElementDAOImp <E> implements ElementDAO <E> {
     public E get(int eID) {
         Session session = null;
         E e = null;
-        try{
+        try {
             session = HibernateUtil.getSession();
-            e = session.get(elementClass,eID);
-        }finally{
-            if((session != null) && (session.isOpen())) session.close();
+            e = session.get(elementClass, eID);
+        } finally {
+            if ((session != null) && (session.isOpen())) session.close();
         }
-        return  e;
+        return e;
     }
 
 
@@ -64,11 +63,11 @@ public class ElementDAOImp <E> implements ElementDAO <E> {
     public Collection<E> getAll() {
         Session session = null;
         List elements = new ArrayList<>();
-        try{
+        try {
             session = HibernateUtil.getSession();
             elements = session.createCriteria(elementClass).list();
-        }finally {
-            if((session != null) && (session.isOpen())) session.close();
+        } finally {
+            if ((session != null) && (session.isOpen())) session.close();
         }
         return elements;
     }
@@ -76,13 +75,13 @@ public class ElementDAOImp <E> implements ElementDAO <E> {
     @Override
     public void delete(E e) {
         Session session = null;
-        try{
+        try {
             session = HibernateUtil.getSession();
             Transaction transaction = session.beginTransaction();
             session.delete(e);
             transaction.commit();
-        }finally{
-            if((session != null) && (session.isOpen())) session.close();
+        } finally {
+            if ((session != null) && (session.isOpen())) session.close();
         }
     }
 }

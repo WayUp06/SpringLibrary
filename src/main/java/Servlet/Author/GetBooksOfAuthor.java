@@ -23,19 +23,13 @@ public class GetBooksOfAuthor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        try {
-            String name = req.getParameter("authorName");
-            String surname = req.getParameter("authorSurname");
-
-            ArrayList<String> list = (ArrayList<String>) authorService.getBooksOfAuthor(name, surname);
-            String books = name + " " + surname + " wrote this books: ";
-            String l = String.join(", ", list);
-            books += l;
-            req.setAttribute("booksOfAuthor",books);
-            req.getRequestDispatcher("/Pages/Author.jsp").include(req, resp);
-        } finally {
-
-        }
+        String name = req.getParameter("authorName");
+        String surname = req.getParameter("authorSurname");
+        ArrayList<String> list = (ArrayList<String>) authorService.getBooksOfAuthor(name, surname);
+        String books = name + " " + surname + " wrote this books: ";
+        String l = String.join(", ", list);
+        books += l;
+        req.setAttribute("booksOfAuthor", books);
+        req.getRequestDispatcher("/Pages/Author.jsp").include(req, resp);
     }
 }

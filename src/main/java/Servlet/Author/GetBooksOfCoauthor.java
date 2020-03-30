@@ -25,18 +25,16 @@ public class GetBooksOfCoauthor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try{
-            String name = req.getParameter("coauthorName");
-            String surname = req.getParameter("coauthorSurname");
+        String name = req.getParameter("coauthorName");
+        String surname = req.getParameter("coauthorSurname");
 
-            List<Book> books = authorService.getBooksOfCoauthor(name, surname);
-            ArrayList <String> list = new ArrayList<>();
-            for(Book book:books){
-                list.add("title: " + book.getName() + " main author: " + book.getAuthor().getName() + " " + book.getAuthor().getSurname());
-            }
-            String result = name + " " + surname + " was coauthor in this books:" + String.join(", ", list);
-            req.setAttribute("booksOfCoauthor", result);
-            req.getRequestDispatcher("/Pages/Author.jsp").include(req, resp);
-        } finally{}
+        List<Book> books = authorService.getBooksOfCoauthor(name, surname);
+        ArrayList<String> list = new ArrayList<>();
+        for (Book book : books) {
+            list.add("title: " + book.getName() + " main author: " + book.getAuthor().getName() + " " + book.getAuthor().getSurname());
+        }
+        String result = name + " " + surname + " was coauthor in this books:" + String.join(", ", list);
+        req.setAttribute("booksOfCoauthor", result);
+        req.getRequestDispatcher("/Pages/Author.jsp").include(req, resp);
     }
 }

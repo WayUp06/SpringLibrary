@@ -20,9 +20,8 @@ public class AuthorService {
     }
 
     public boolean update(Author author) {
-
-            authorDAO.update(author);
-            return true;
+        authorDAO.update(author);
+        return true;
     }
 
     public Author get(int id) {

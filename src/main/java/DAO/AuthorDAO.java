@@ -15,27 +15,25 @@ public class AuthorDAO extends ElementDAOImp<Author> {
         super(elementClass);
     }
 
-    //public AuthorDAO(){}
 
     /**
-     * @param name - name of author
+     * @param name    - name of author
      * @param surname - surname of author
      * @return list of book names of this author
      */
-    public List<String> getBooksOfAuthor(String name, String surname){
+    public List<String> getBooksOfAuthor(String name, String surname) {
         Session session = null;
         ArrayList<String> list;
-        try{
+        try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
             Query query = session.createQuery("select b.name From Book  b " +
                     "where b.author_ID = (select author_ID from Author  where name = :name and surname =:surname)");
-            query.setParameter("name",name);
-            query.setParameter("surname",surname);
+            query.setParameter("name", name);
+            query.setParameter("surname", surname);
             list = (ArrayList<String>) query.list();
-        }
-        finally{
-            if((session != null) && (session.isOpen())) session.close();
+        } finally {
+            if ((session != null) && (session.isOpen())) session.close();
         }
         return list;
     }
@@ -44,10 +42,10 @@ public class AuthorDAO extends ElementDAOImp<Author> {
     /**
      * @return set of books with this coauthor
      */
-    public List<Book> getBooksOfCoauthor(String name, String surname){
+    public List<Book> getBooksOfCoauthor(String name, String surname) {
         Session session = null;
         List<Book> b;
-        try{
+        try {
             session = HibernateUtil.getSession();
             session.beginTransaction();
             Query query = session.createQuery("from Author  a where a.name =:name and a.surname =:surname");
@@ -55,8 +53,8 @@ public class AuthorDAO extends ElementDAOImp<Author> {
             query.setParameter("surname", surname);
             Author a = (Author) query.uniqueResult();
             b = a.getBooks();
-        } finally{
-            if((session!=null) && session.isOpen()) session.close();
+        } finally {
+            if ((session != null) && session.isOpen()) session.close();
         }
         return b;
     }

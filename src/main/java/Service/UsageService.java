@@ -17,11 +17,8 @@ public class UsageService {
     }
 
     public boolean update(Usage usage) {
-
             usageDAO.update(usage);
             return true;
-
-
     }
 
     public Usage get(int id) {

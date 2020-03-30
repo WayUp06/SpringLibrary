@@ -6,7 +6,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /*  book - from OneToMany relation with author
  *   books - fro ManyToMany relationship with coauthors*/
@@ -35,8 +34,8 @@ public class Author {
     public Author() {
     }
 
-    @OneToMany(mappedBy = "author", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Book> book = new ArrayList<>();
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Book> booksOfAuthor = new ArrayList<>();
 
 
     @ManyToMany(mappedBy = "coauthors", fetch = FetchType.EAGER)
@@ -49,7 +48,7 @@ public class Author {
                 "author_ID=" + author_ID +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", book=" + book +
+                ", book=" + booksOfAuthor +
                 ", books=" + books +
                 '}';
     }
