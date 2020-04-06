@@ -4,3 +4,4 @@
 /web/Answer/output.jsp
 /src/main/resources/hibernate.cfg.xml
 /Lib.iml
+!/src/main/java/controller/Test.java
