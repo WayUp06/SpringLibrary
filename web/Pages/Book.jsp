@@ -61,7 +61,7 @@
 <br>
 <form action="/Lib_war_exploded/getCountOfBookUsageByExample" method="get">
     <fieldset>
-        <legend>Get count of book usage:</legend>
+        <legend>Get count of book usage by examples:</legend>
         <label for="usageCountByEx">Book title:</label><br>
         <input type="text" id="usageCountByEx" name="usageCountByEx"><br>
 

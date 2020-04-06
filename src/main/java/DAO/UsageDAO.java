@@ -1,38 +1,34 @@
 package DAO;
 
 import Entity.Usage;
-import main.HibernateUtil;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
+@Repository
 public class UsageDAO extends ElementDAOImp<Usage> {
     public UsageDAO(Class<Usage> elementClass) {
         super(elementClass);
     }
 
+    @Autowired
+    SessionFactory sessionFactory;
 
     /**
      * @return count of all library usages during some period
      */
     public long getCountOfUsagesOfPeriod(String start, String end) {
-        Session session = null;
         long result;
-        try {
-            session = HibernateUtil.getSession();
-            session.beginTransaction();
-            Query query = session.createQuery("select count(u.id) from Usage u" +
-                    " where u.takeDate > :start and u.takeDate < :end");
-            LocalDate s = LocalDate.parse(start);
-            LocalDate e = LocalDate.parse(end);
-            query.setParameter("start", s);
-            query.setParameter("end", e);
-            result = (long) query.uniqueResult();
-        } finally {
-            if ((session != null) && session.isOpen()) session.close();
-        }
+        Query query = sessionFactory.getCurrentSession().createQuery("select count(u.id) from Usage u" +
+                " where u.takeDate > :start and u.takeDate < :end");
+        LocalDate s = LocalDate.parse(start);
+        LocalDate e = LocalDate.parse(end);
+        query.setParameter("start", s);
+        query.setParameter("end", e);
+        result = (long) query.uniqueResult();
         return result;
     }
 }

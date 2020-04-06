@@ -2,13 +2,21 @@ package Service;
 
 import DAO.BookDAO;
 import Entity.Book;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Service
+@Transactional
 public class BookService {
 
-    private BookDAO bookDAO = new BookDAO(Book.class);
+    //private BookDAO bookDAO = new BookDAO(Book.class);
+
+    @Autowired
+    BookDAO bookDAO;
 
     public BookService() {
     }

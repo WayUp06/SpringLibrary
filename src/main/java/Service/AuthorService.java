@@ -3,17 +3,26 @@ package Service;
 import DAO.AuthorDAO;
 import Entity.Author;
 import Entity.Book;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
+@Service
+@Transactional
 public class AuthorService {
 
-    private AuthorDAO authorDAO = new AuthorDAO(Author.class);
+    //private AuthorDAO authorDAO = new AuthorDAO(Author.class);
+
+    @Autowired
+    private AuthorDAO authorDAO;
 
     public AuthorService() {
     }
+
 
     public void add(Author author) {
         authorDAO.add(author);
@@ -23,6 +32,7 @@ public class AuthorService {
         authorDAO.update(author);
         return true;
     }
+
 
     public Author get(int id) {
         return authorDAO.get(id);

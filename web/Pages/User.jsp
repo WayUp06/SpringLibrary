@@ -63,7 +63,7 @@
 <br>
 <form action="/Lib_war_exploded/getPeriodOfLibraryUsing" method="get">
     <fieldset>
-        <legend>Get period of library using bu this user:</legend>
+        <legend>Get period of library using by this user:</legend>
         <label for="id3">Enter user id:</label><br>
         <input type="text" id="id3" name="id3"><br>
 

@@ -2,14 +2,22 @@ package Service;
 
 import DAO.UserDAO;
 import Entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Service
+@Transactional
 public class UserService {
 
-    private UserDAO userDAO = new UserDAO(User.class);
+    //private UserDAO userDAO = new UserDAO(User.class);
+
+    @Autowired
+    UserDAO userDAO;
 
     public UserService() {
     }

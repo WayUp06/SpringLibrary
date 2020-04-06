@@ -2,13 +2,21 @@ package Service;
 
 import DAO.BookExampleDAO;
 import Entity.BookExample;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
 
+@Service
+@Transactional
 public class BookExampleService {
 
-    private BookExampleDAO bookExampleDAO = new BookExampleDAO(BookExample.class);
+    //private BookExampleDAO bookExampleDAO = new BookExampleDAO(BookExample.class);
+
+    @Autowired
+    BookExampleDAO bookExampleDAO;
 
     public BookExampleService() {
     }

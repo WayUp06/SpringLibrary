@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*  book - from OneToMany relation with author
- *   books - fro ManyToMany relationship with coauthors*/
+ *   books - from ManyToMany relationship with coauthors*/
 @Getter
 @Setter
 @Entity

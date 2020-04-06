@@ -1,14 +1,14 @@
 package DAO;
 
-import main.HibernateUtil;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 
+
+@Repository
 public class ElementDAOImp<E> implements ElementDAO<E> {
 
     private Class<E> elementClass;
@@ -19,69 +19,40 @@ public class ElementDAOImp<E> implements ElementDAO<E> {
         this.elementClass = elementClass;
     }
 
+    @Autowired
+    SessionFactory sessionFactory;
+
+
     @Override
     public void add(E e) {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSession();
-            Transaction transaction = session.beginTransaction();
-            session.save(e);
-            transaction.commit();
-        } finally {
-            if ((session != null) && (session.isOpen())) session.close();
-        }
+        Transaction transaction = sessionFactory.getCurrentSession().beginTransaction();
+        sessionFactory.getCurrentSession().save(e);
+        transaction.commit();
     }
 
     @Override
     public void update(E e) {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSession();
-            Transaction transaction = session.beginTransaction();
-            session.update(e);
-            transaction.commit();
-        } finally {
-            if ((session != null) && (session.isOpen())) session.close();
-        }
+        Transaction transaction = sessionFactory.getCurrentSession().beginTransaction();
+        sessionFactory.getCurrentSession().update(e);
+        transaction.commit();
     }
 
     @Override
     public E get(int eID) {
-        Session session = null;
-        E e = null;
-        try {
-            session = HibernateUtil.getSession();
-            e = session.get(elementClass, eID);
-        } finally {
-            if ((session != null) && (session.isOpen())) session.close();
-        }
-        return e;
+        return sessionFactory.getCurrentSession().get(elementClass, 1);
+
     }
 
 
     @Override
     public Collection<E> getAll() {
-        Session session = null;
-        List elements = new ArrayList<>();
-        try {
-            session = HibernateUtil.getSession();
-            elements = session.createCriteria(elementClass).list();
-        } finally {
-            if ((session != null) && (session.isOpen())) session.close();
-        }
-        return elements;
+        return sessionFactory.getCurrentSession().createCriteria(elementClass).list();
     }
 
     @Override
     public void delete(E e) {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSession();
-            Transaction transaction = session.beginTransaction();
-            session.delete(e);
+            Transaction transaction = sessionFactory.getCurrentSession().beginTransaction();
+        sessionFactory.getCurrentSession().delete(e);
             transaction.commit();
-        } finally {
-            if ((session != null) && (session.isOpen())) session.close();
-        }
     }
 }

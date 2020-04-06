@@ -1,7 +1,6 @@
 package DAO;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public interface ElementDAO<E> {
     void add(E e);
